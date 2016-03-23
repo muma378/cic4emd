@@ -1,0 +1,9 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('后台管理') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('少数名族事业发展协同创新中心') }}</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

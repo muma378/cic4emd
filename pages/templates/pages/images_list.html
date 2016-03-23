@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>浏览上传图片</title>
+    </head>
+    <body>
+        <!-- List of uploaded documents -->
+        {% if figures %}
+            <ul>
+                {% for figure in figures %}
+                    <li>
+                    	<a onclick="javascript:returnFileUrl(this)"><img src="{{ figure.image.url }}" alt="{{ figure.image.desc }}" style="width:80px;height:60px;"></a>
+                    	{{ figure.image.name }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No images list.</p>
+        {% endif %}
+		<script type="text/javascript">
+			function returnFileUrl(e){
+				var funcNum = {{ func_num }};
+				var fileUrl = e.querySelector("img").getAttribute("src");
+				window.opener.CKEDITOR.tools.callFunction( funcNum, fileUrl );
+				window.close();
+			}
+		</script>
+    </body>
+
+</html>
