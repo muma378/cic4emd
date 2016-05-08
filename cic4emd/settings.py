@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
+    'django_wysiwyg',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -128,3 +129,9 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
+
+DJANGO_WYSIWYG_FLAVOR = 'ckeditor'
+# DJANGO_WYSIWYG_MEDIA_URL = "//cdn.ckeditor.com/4.5.7/full/"
+DJANGO_WYSIWYG_MEDIA_URL = STATIC_URL + 'ckeditor/'
+
+from .local_settings import *
