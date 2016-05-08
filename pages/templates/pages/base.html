@@ -1,0 +1,48 @@
+{% load i18n admin_static %}<!DOCTYPE html>
+<html lang="zh-CN" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../../favicon.ico">
+	
+    <title>{% block title %}{% endblock %}</title>
+    <link href="/static/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/static/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    {% block extrastyle %}{% endblock %}
+    {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}" />{% endif %}
+    {% block extrahead %}{% endblock %}
+    {% block blockbots %}<meta name="robots" content="all" />{% endblock %}
+  </head>
+
+  <body>
+    <div id="cic-container" class="container" width="80%" margin="auto">
+      <div id="cic-header">
+        <div class="container">
+          <div id="cic-branding" class="row" style="height: 100px">{% block branding %}{% endblock %}</div>
+          <div id="cic-nav" class="row">{% block navigation %}{% endblock %}</div>
+        </div>
+      </div>
+      
+      <div id="cic-main">
+        <div class="container">
+          {% block main %}{% endblock %}
+        </div>
+      </div>
+      
+      <div id="cic-footer">{% block footer %}{% endblock %}</div>
+    </div>
+
+    <script src="/static/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/static/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/static/asset/js/ie10-viewport-bug-workaround.js"></script>
+    {% block extrascript %}{% endblock %}
+  </body>
+</html>
