@@ -36,7 +36,7 @@ class Category(models.Model):
 	class Meta:
 		verbose_name = u'栏目'
 		verbose_name_plural = u'栏目'
-		unique_together = (('parent', 'display_order'), )
+		# unique_together = (('parent', 'display_order'), )
 
 class Publishment(models.Model):
 	"""contains all elements consisted in an announcement/news/page"""
@@ -87,7 +87,7 @@ class Attachment(MediaFile):
 	file = models.FileField(upload_to=user_uploads_path, verbose_name=u'文件')
 	
 	def __unicode__(self):
-		return str(self.id) + '.'
+		return str(self.id) + '.' + self.desc
 	
 	class Meta:
 		verbose_name = u'添加附件'
@@ -102,12 +102,15 @@ class Figure(MediaFile):
 	primary = models.BooleanField(u'是否为封面图片', default=False)
 	image = models.ImageField(upload_to=user_images_path, verbose_name=u'图片')
 
+
 class Carousel(models.Model):
 	"""images displayed in the carousel module of the index page"""
 	desc  = models.CharField(u"描述", max_length=200, null=True)
 	image = models.ImageField(upload_to=user_images_path, verbose_name=u"图片")
-	publishment = models.ForeignKey(Publishment, verbose_name=u"文章")
-	
+	publishment = models.ForeignKey(Publishment, verbose_name=u"链接文章")
+	uploaded_by = models.ForeignKey(User, verbose_name=u'上传者', on_delete=models.CASCADE)
+	date_uploaded = models.DateTimeField(u'上传日期', auto_now_add=True)
+
 	class Meta:
 		verbose_name = u'首页图片'
 		verbose_name_plural = u'首页图片'

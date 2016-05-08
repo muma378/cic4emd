@@ -8,7 +8,7 @@ from django.utils.functional import curry
 
 from .models import Publishment, Category, Article
 from .forms import ArticleForm, AttachmentForm
-from pages.models import Attachment
+from pages.models import Attachment, Carousel
 from cic4emd.admin import admin_site
 
 
@@ -69,7 +69,7 @@ class ArticleAdmin(admin.ModelAdmin):
     form = ArticleForm
     change_form_template = 'admin/change_richtext_form.html'
     
-    list_display = ('title', 'author', 'state', 'last_edit')
+    list_display = ('title', 'author', 'article_category', 'state', 'article_pubdate', 'last_edit')
     list_filter = (
                     'publishment__state',
                    )
@@ -85,8 +85,16 @@ class ArticleAdmin(admin.ModelAdmin):
         except Publishment.DoesNotExist:
             return u'编辑中'
     
-    state.short_description = u'发布状态'
+    def article_category(self, obj):
+        return obj.publishment.category
+
+    def article_pubdate(self, obj):
+        return obj.publishment.pub_date
     
+    state.short_description = u'发布状态'
+    article_category.short_description = u'所属栏目'
+    article_pubdate.short_description = u'发布日期'
+
     def save_model(self, request, obj, form, change):
         obj.author = request.user
         admin.ModelAdmin.save_model(self, request, obj, form, change)
@@ -107,6 +115,7 @@ class ArticleAdmin(admin.ModelAdmin):
         request.GET = data
         return super(ArticleAdmin, self).add_view(request, form_url=form_url, extra_context=extra_context)
     
+
     class Media:
         js = ("asset/js/csrf_protect.js", )
 #         pass    
@@ -146,4 +155,9 @@ class CategoryAdmin(admin.ModelAdmin):
                    ('parent', ExistedForeignKeyListFilter),
                    )
     
-    
+
+@admin.register(Carousel, site=admin_site)
+class CarouselAdmin(admin.ModelAdmin):
+    list_display = ('desc', 'image', 'publishment', 'uploaded_by', 'date_uploaded')
+    ordering = ('date_uploaded', )
+
