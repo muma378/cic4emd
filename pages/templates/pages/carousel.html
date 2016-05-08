@@ -1,48 +1,32 @@
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+{% load static %}
+{% get_media_prefix as MEDIA_PREFIX %}
+<div id="cic-carousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+        {% for carousel in carousels %}
+          <li data-target="#cic-carousel" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %} class="active"{% endif %}></li>
+        {% endfor %}
       </ol>
       <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+        {% for carousel in carousels %}
+        <div class="item {% if forloop.first %} active{% endif %}">
+          <img class="slides" src="{{ MEDIA_PREFIX }}{{ carousel.image }}" alt="{{ carousel.publishment.article.title }}">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Example headline.</h1>
-              <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+              <h3>{{ carousel.desc }}</h3>
+              <p><a class="btn btn-lg btn-primary" href="{{ MEDIA_PREFIX }}{{ carousel.image }}" role="button">了解详情</a></p>
+
             </div>
           </div>
         </div>
-        <div class="item">
-          <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <a class="left carousel-control" href="#cic-carousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
+        <span class="sr-only">上一张</span>
       </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <a class="right carousel-control" href="#cic-carousel" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
+        <span class="sr-only">下一张</span>
       </a>
 </div><!-- /.carousel -->

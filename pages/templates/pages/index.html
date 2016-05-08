@@ -8,7 +8,7 @@
   <div class="row">
     {% block primary %}
       <div class="col-md-9">
-        {% include "pages/carousel.html"%}
+        {% include "pages/carousel.html" with carousels=carousels only %}
       </div>
       <div class="col-md-3">
         news are here
