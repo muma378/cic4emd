@@ -25,10 +25,9 @@ class Category(models.Model):
 	"""what type an article belongs to"""
 	name = models.CharField(u'名称', max_length=30)
 	abbr = models.CharField(u'缩写', max_length=20, unique=True, help_text=u"栏目拼音或英文的首字母组合，只会出现在url中")
-	desc = models.CharField(u'描述', max_length=200, null=True)
-	parent = models.ForeignKey('self', verbose_name=u'上级栏目', null=True, blank=True)
-	display_order = models.IntegerField(u'展示顺序', )	# not displayed in navigation if the value was negative
-	# hidden = models.BooleanField(u'隐藏', default=False)
+	desc = models.CharField(u'描述', max_length=200, null=True, blank=True)
+	parent = models.ForeignKey('self', verbose_name=u'上级栏目', null=True, blank=True, help_text=u"将会决定在导航栏中哪个栏目里展示，如果想作为顶级栏目可以不设置")
+	display_order = models.	IntegerField(u'展示顺序', help_text=u"在导航栏中的展示顺序，如果不希望展示在导航栏中，可设该值为负数")	# not displayed in navigation if the value was negative
 	create_date = models.DateTimeField(u'创建日期', auto_now_add=True)
 	
 	def __unicode__(self):
@@ -38,6 +37,10 @@ class Category(models.Model):
 		verbose_name = u'栏目'
 		verbose_name_plural = u'栏目'
 		# unique_together = (('parent', 'display_order'), )
+
+	def get_url(self):
+		return "/pages/%s" % self.abbr
+
 
 class Publishment(models.Model):
 	"""contains all elements consisted in an ---/news/page"""

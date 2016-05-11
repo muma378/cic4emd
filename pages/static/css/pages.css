@@ -4,6 +4,17 @@
 	margin: auto;
 }
 
+ul.nav li.dropdown:hover ul.dropdown-menu{ 
+	display: block;
+	min-width: 80px;
+}
+
+.navbar-nav > li {
+	text-align: center;
+	font-size: large;
+	/*width: 15%;*/
+	margin: 5px 15px;
+}
 
 .cic-trend {
 	border-left: 5px;

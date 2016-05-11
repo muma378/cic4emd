@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
-from .models import Figure, Carousel, Publishment, Attachment
+from .models import Figure, Carousel, Publishment, Attachment, Category
 from .forms import FigureForm
 from cic4emd import settings
 from utils.common import tz_now
@@ -9,11 +9,20 @@ from utils.common import tz_now
 # Create your views here.
 def index(request):
     carousels = Carousel.objects.all().order_by("-date_uploaded")[:settings.CAROUSEL_IMAGES_NUM]
-    
     news_list = Publishment.objects.exclude(state='unpublished').exclude(broadcast=False).filter(pub_date__lte=tz_now()).order_by("-pub_date")[:settings.NEWS_LISTED_INDEX]
+
+    # only extracts query set to be demonstrated
+    cate_queryset = Category.objects.exclude(display_order__lt=0)  
+    cate_parents = cate_queryset.filter(parent__isnull=True).order_by("display_order")
+    categories = []
+    for parent in cate_parents:
+        children = cate_queryset.filter(parent=parent)
+        categories.append({"parent":parent, "children": children})
+
     context = {"links":settings.QUICK_LINKS, 
                 "news_list":news_list,
-                "carousels":carousels}
+                "carousels":carousels,
+                "categories": categories}
     return render(request, "pages/index.html", context)
 
 def category_archive(request, category_abbr):
