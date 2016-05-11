@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
+from django.db.models import Q
+from django.core.exceptions import ObjectDoesNotExist
 from .models import Figure, Carousel, Publishment, Attachment, Category
 from .forms import FigureForm
 from cic4emd import settings
@@ -9,24 +11,88 @@ from utils.common import tz_now
 # Create your views here.
 def index(request):
     carousels = Carousel.objects.all().order_by("-date_uploaded")[:settings.CAROUSEL_IMAGES_NUM]
-    news_list = Publishment.objects.exclude(state='unpublished').exclude(broadcast=False).filter(pub_date__lte=tz_now()).order_by("-pub_date")[:settings.NEWS_LISTED_INDEX]
+    
+    # query once, but used in many times
+    pub_queryset = get_avaible_publishments()
+    
+    news_list = pub_queryset.order_by("-pub_date")[:settings.NEWS_LISTED_INDEX]
+    
+    news_archives_categories = []
+    for abbr in settings.NEWS_ARCHIVE_ABBRS:
+        try:
+            news_archives_categories.append(Category.objects.get(abbr=abbr))
+        except ObjectDoesNotExist, e:
+            pass
+    
+    news_archives = []
+    for category in news_archives_categories:
+        pubs = pub_queryset.filter(category=category).order_by("-pub_date")[:settings.NEWS_ARCHIVE_NUM]
+        if pubs:    
+            try:
+                cover = pubs.first().article.figure_set.first().image.url
+            except AttributeError, e:
+                cover = settings.PLACEHOLDER_COVER
 
+            news_archives.append({
+                "category":category, 
+                "publishments": pubs,
+                "cover": cover,})
+
+    context = {"links":settings.QUICK_LINKS, 
+                "news_list":news_list,
+                "news_archives": news_archives,
+                "carousels":carousels,
+                "navigation": get_categories()
+                }
+    return render(request, "pages/index.html", context)
+
+# TODO: cache the result, it was called so often
+def get_categories():
     # only extracts query set to be demonstrated
-    cate_queryset = Category.objects.exclude(display_order__lt=0)  
+    cate_queryset = Category.objects.exclude(display_order__lt=0)
+
     cate_parents = cate_queryset.filter(parent__isnull=True).order_by("display_order")
     categories = []
     for parent in cate_parents:
         children = cate_queryset.filter(parent=parent)
         categories.append({"parent":parent, "children": children})
+    return categories
 
-    context = {"links":settings.QUICK_LINKS, 
-                "news_list":news_list,
-                "carousels":carousels,
-                "categories": categories}
-    return render(request, "pages/index.html", context)
+def get_avaible_publishments():
+    return Publishment.objects.exclude(state='unpublished')\
+        .exclude(broadcast=False).filter(pub_date__lte=tz_now())
+
 
 def category_archive(request, category_abbr):
-    context = {}
+    category = get_object_or_404(Category, abbr=category_abbr)
+    pub_queryset = get_avaible_publishments().order_by("-pub_date")
+
+    if category.parent:     # for categories in top level
+        publishments = pub_queryset.filter(category=category)
+    else:
+        publishments = pub_queryset.filter(Q(category__parent=category) | Q(category=category))
+
+    # get info for pagination
+    try:
+        index = int(request.GET.get('page', 1))
+    except ValueError, e:
+        raise Http404
+    start, end = (index-1)*settings.NEWS_PER_PAGE_NUM, index*settings.NEWS_PER_PAGE_NUM
+    if index < 1 or start > publishments.count():
+        raise Http404
+
+    next, prev = None, None
+    if publishments.count() > end:
+        next = index + 1
+    if index > 1:
+        prev = index - 1
+
+    context = {"title": category.name,
+                "navigation": get_categories(),
+                "category": category,
+                "publishments": publishments[start:end],
+                "pagination": { "index": index, "prev": prev, "next": next},
+                }
     return render(request, "pages/list.html", context)
 
 def publishment(request, category_abbr, publishment_id):
@@ -35,7 +101,11 @@ def publishment(request, category_abbr, publishment_id):
         raise Http404
 
     attachments = Attachment.objects.filter(article=content.article)
-    context = {"publishment": content, "title": content.article, "attachments": attachments}
+    context = {"publishment": content, 
+                "title": content.article, 
+                "attachments": attachments,
+                "navigation": get_categories()
+                }
     return render(request, "pages/content.html", context)
 
 def browse(request):

@@ -4,6 +4,8 @@
 LISTED_IMAGES_NUM = 15
 CAROUSEL_IMAGES_NUM = 3
 NEWS_LISTED_INDEX = 8
+NEWS_ARCHIVE_NUM = 8
+NEWS_PER_PAGE_NUM = 10
 
 QUICK_LINKS = [
 	{	
@@ -26,3 +28,6 @@ QUICK_LINKS = [
 	},
 
 ]
+
+NEWS_ARCHIVE_ABBRS = ['xwzx', 'gzjb', 'tzgg', 'xwgg'] 
+PLACEHOLDER_COVER = 'asset/img/placeholder.png'

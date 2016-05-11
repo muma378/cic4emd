@@ -1,12 +1,47 @@
 
+/* branding and logo */
+.cic-branding {
+	height: 120px;
+}
+
+.cic-branding #cic-logo {
+	margin-top: 10px;
+	width: 100px; 
+	height: 100px;
+}
+
+.cic-branding #cic-site-name {
+	display: block;
+	margin-top: 34px;
+	padding-left: 25px;
+	font-family: sans-serif, "Times New Roman", Times, serif;
+	font-size: 36px;
+	font-weight: 500;
+	line-height: 1.1;
+}
+
+
+
 #cic-container {
 	width: 90%;
 	margin: auto;
 }
 
+/* Navigation */
+
 ul.nav li.dropdown:hover ul.dropdown-menu{ 
 	display: block;
-	min-width: 80px;
+	/*min-width: 80px;*/
+}
+
+#cic-navbar {
+  font-family: serif, Georgia, "Times New Roman", Times;
+}
+
+#cic-navbar-brand {
+	margin-top: 5px;
+	margin-left: 30px;
+	margin-right: 30px;
 }
 
 .navbar-nav > li {
@@ -15,6 +50,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu{
 	/*width: 15%;*/
 	margin: 5px 15px;
 }
+
 
 .cic-trend {
 	border-left: 5px;
@@ -32,22 +68,6 @@ ul.nav li.dropdown:hover ul.dropdown-menu{
 	text-align: left;
 }
 
-.cic-branding {
-	height: 120px;
-}
-
-.cic-branding #cic-logo {
-	margin-top: 10px;
-	width: 100px; 
-	height: 100px;
-}
-
-.cic-branding #cic-site-name {
-	display: block;
-	margin-top: 34px;
-	padding-left: 25px;
-}
-
 
 /* Quick-links */
 .quick-link {
@@ -59,6 +79,10 @@ ul.nav li.dropdown:hover ul.dropdown-menu{
 	width: 100px;
 }
 
+
+.publishment-container{
+	width: 96%;
+}
 
 /* Featurettes
 ------------------------- */

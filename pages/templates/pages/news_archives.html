@@ -1,7 +1,12 @@
+{% load staticfiles %}
 <div class="col-md-7">
-  <h2 class="featurette-heading">{{ news }}<span class="text-muted">It'll blow your mind.</span></h2>
-  <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+  <h2 class="featurette-heading">{{ news_archive.category }}<span class="text-muted">{{ news_archive.category.desc }}</span></h2>
+  <ul>
+  	{% for pub in news_archive.publishments %}
+	  <li><a href="{{ pub.get_url }}" class="lead">{{ pub.article }} </a> - {{ pub.pub_date | date:"Y/m/d" }}</li>
+	{% endfor %}
+	</ul>
 </div>
 <div class="col-md-5">
-  <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+  <img class="featurette-image img-thumbnail center-block" src="{% static news_archive.cover %}" alt="cover">
 </div>

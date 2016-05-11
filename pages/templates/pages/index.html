@@ -24,14 +24,12 @@
     {% endblock %}
   </div>
 
-  {% block news-list %}
-    {% for news in news_list %}
+  {% block news-archive %}
+    {% for news_archive in news_archives %}
       <hr class="featurette-divider">
       <div class="row featurette">
-        {% include "pages/news_archives.html" %}
+        {% include "pages/news_archives.html" with news_archive=news_archive only %}
       </div>
     {% endfor %}
-      <hr class="featurette-divider">
-
   {% endblock %}
 {% endblock %}
