@@ -84,6 +84,23 @@ ul.nav li.dropdown:hover ul.dropdown-menu{
 	width: 96%;
 }
 
+
+/* news archive */
+
+div .archive-container {
+	height: 300px;
+}
+
+.archive-list {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 17px;
+}
+
+.archive-date {
+	float: right;
+	margin-right: 30px;
+}
+
 /* Featurettes
 ------------------------- */
 

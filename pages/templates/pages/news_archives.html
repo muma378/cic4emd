@@ -1,9 +1,12 @@
 {% load staticfiles %}
 <div class="col-md-7">
-  <h2 class="featurette-heading">{{ news_archive.category }}<span class="text-muted">{{ news_archive.category.desc }}</span></h2>
-  <ul>
+  <h2 class="archive-heading" id="archive-{{ news_archive.category.abbr }}">{{ news_archive.category }}</h2>
+  <ul class="archive-list">
   	{% for pub in news_archive.publishments %}
-	  <li><a href="{{ pub.get_url }}" class="lead">{{ pub.article }} </a> - {{ pub.pub_date | date:"Y/m/d" }}</li>
+	  <li id="news-archive-{{ forloop.counter }}">
+	  	<a href="{{ pub.get_url }}" class="archive-name">{{ pub.article }} </a> 
+	  	<span class="archive-date">{{ pub.pub_date | date:"Y/m/d" }}</span>
+	  </li>
 	{% endfor %}
 	</ul>
 </div>

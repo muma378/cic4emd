@@ -18,13 +18,28 @@ QUICK_LINKS = [
 		"name": u"创新平台", 
 		"icon": "asset/img/gear.png", 
 		"link": "/pages/cxpt", 
-		"desc": u"包含5大平台，15个团队", 
+		"desc": u"包含5大平台，16个研究团队", 
 	},
 	{
 		"name": u"民族事务数据库", 
 		"icon": "asset/img/folder.png", 
 		"link": "http://www.muc.edu.cn/",
 		"desc": u"人口，经济，社会，教育，整合最新民族数据", 
+	},
+]
+
+FRIENDLY_LINKS = [
+	{
+		"name": u"国家民委民研中心",
+		"link": "#",
+	},
+	{
+		"name": u"中央名族大学",
+		"link": "http://www.muc.edu.cn/",
+	},
+	{
+		"name": u"中南民族大学",
+		"link": "#",
 	},
 
 ]
