@@ -22,6 +22,7 @@ import settings
 
 urlpatterns = [
     url(r'^index/', include('pages.urls', namespace='pages')),
+    url(r'^pages/', include('pages.urls', namespace='pages')),
     url(r'^admin/', admin_site.urls),
 #     url(r'^admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
