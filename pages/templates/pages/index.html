@@ -1,17 +1,17 @@
 {% extends "pages/base_site.html" %}
 {% load i18n admin_static %}
 
-{% block title %}少数名族事业发展协同创新中心{% endblock %}
+{% block title %}少数民族事业发展协同创新中心{% endblock %}
 
 {% block main %}
 
   <div class="row">
     {% block primary %}
-      <div class="col-md-9">
+      <div class="col-md-7 col-lg-8">
         {% include "pages/carousel.html" with carousels=carousels only %}
       </div>
-      <div class="col-md-3">
-        news are here
+      <div class="col-md-5 col-lg-4">
+        {% include "pages/news_list.html" with news_list=news_list only %}
       </div>
     {% endblock %}
   </div>
@@ -28,7 +28,7 @@
     {% for news in news_list %}
       <hr class="featurette-divider">
       <div class="row featurette">
-        {% include "pages/news_list.html" %}
+        {% include "pages/news_archives.html" %}
       </div>
     {% endfor %}
       <hr class="featurette-divider">

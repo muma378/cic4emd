@@ -16,20 +16,23 @@
     <![endif]-->
 
     {% block extrastyle %}{% endblock %}
+    <link href="{% static "css/pages.css" %}" rel="stylesheet">
     {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}" />{% endif %}
     {% block extrahead %}{% endblock %}
     {% block blockbots %}<meta name="robots" content="all" />{% endblock %}
   </head>
 
   <body>
-    <div id="cic-container" class="container" width="80%" margin="auto">
+    <div id="cic-container" class="container">
       <div id="cic-header">
         <div class="container">
-          <div id="cic-branding" class="row" style="height: 100px">{% block branding %}{% endblock %}</div>
-          <div id="cic-nav" class="row">{% block navigation %}{% endblock %}</div>
+          <div class="cic-branding" class="row">{% block branding %}{% endblock %}</div>
+          <div class="cic-nav" class="row">{% block navigation %}{% endblock %}</div>
         </div>
       </div>
       
+      {% block breadcrumb %}{% endblock %}
+
       <div id="cic-main">
         <div class="container">
           {% block main %}{% endblock %}

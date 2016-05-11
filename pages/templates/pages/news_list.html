@@ -1,7 +1,14 @@
-<div class="col-md-7">
-  <h2 class="featurette-heading">{{ news }}<span class="text-muted">It'll blow your mind.</span></h2>
-  <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-</div>
-<div class="col-md-5">
-  <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+
+<div class="cic-trend">
+  <h3 id='cic-trend-title'>中心动态</h3>
+  <div class="list-group">
+  {% for news in news_list %}
+    <a href="{{ news.get_url }}" class="list-group-item {% if forloop.first %} active{% endif %}">
+      <p class="list-group-item-text trend-meta">{{ news.category.name }} - {{ news.pub_date | date:"Y/m/d" }}</p>
+      <h4 class="list-group-item-heading trend-title">{{ news.article.title }}</h4>
+      {% if forloop.first %}<small class="list-group-item-text trend-content">{{ news.article.content | striptags | cut:' ' | safe | truncatechars:80 }}</small>
+      {% endif %}
+    </a>
+  {% endfor%}
+  </div>
 </div>

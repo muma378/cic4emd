@@ -1,0 +1,39 @@
+{% extends "pages/base_site.html" %}
+{% load static %}
+
+{% block extrastyle %}{{ block.super }}
+<link href="{% static "css/blog.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block breadcrumb %}{% endblock %}
+
+{% block main %}
+<div class="container" id="publishment-"{{ publishment.id }}>
+{% block content %}
+	<div class="row">
+		<div class="blog-post">
+			<h2 class="blog-post-title">{{ publishment.article.title }}</h2>
+			<p class="blog-post-meta">发布日期：{{ publishment.pub_date | date:"Y/m/d" }}&emsp;  发布人：{% if publishment.publisher %} {{ publishment.publisher.username }} {% else %}佚名 {% endif %} </p>
+			<div class="blog-post-body">
+				{% autoescape off %}
+					{{ publishment.article.content }}
+				{% endautoescape %}
+			</div>
+		<div>
+	</div>
+{% endblock %}
+{% block attachment %}
+	{% if attachments %}
+	<div class="blog-attachment">
+		<p class="blog-post-meta">下载附件：</p>
+		{% for attachment in attachments %}
+			<a href="{{ attachment.file.url }}">{{ forloop.counter }}.{{ attachment.desc }} </a> - {{ attachment.date_uploaded | date:"Y/m/d"}}
+			<br>
+		{% endfor %}
+	</div>
+	{% endif %}
+{% endblock %}
+</div>
+
+
+{% endblock %}

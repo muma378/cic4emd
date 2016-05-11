@@ -24,6 +24,7 @@ class Article(models.Model):
 class Category(models.Model):
 	"""what type an article belongs to"""
 	name = models.CharField(u'名称', max_length=30)
+	abbr = models.CharField(u'缩写', max_length=20, unique=True, help_text=u"栏目拼音或英文的首字母组合，只会出现在url中")
 	desc = models.CharField(u'描述', max_length=200, null=True)
 	parent = models.ForeignKey('self', verbose_name=u'上级栏目', null=True, blank=True)
 	display_order = models.IntegerField(u'展示顺序', )	# not displayed in navigation if the value was negative
@@ -39,27 +40,32 @@ class Category(models.Model):
 		# unique_together = (('parent', 'display_order'), )
 
 class Publishment(models.Model):
-	"""contains all elements consisted in an announcement/news/page"""
+	"""contains all elements consisted in an ---/news/page"""
 	PUBLISH_STATE = (
 		('unpublished', u'未发布'),
 		('published', u'已发布'),
 		('to-publish', u'待发布'),
 	)
 	
-	article = models.OneToOneField(Article, verbose_name=u'文章标题', on_delete=models.CASCADE)
-	publisher = models.ForeignKey(User, verbose_name=u'发布人', on_delete=models.SET_NULL, null=True)
-	category = models.ForeignKey(Category, verbose_name=u'所属栏目', on_delete=models.SET_NULL, null=True)
-	state = models.CharField(u'发布状态', max_length=15, choices=PUBLISH_STATE, default='unpublished')
-	pub_date = models.DateTimeField(u'发布日期', validators=[validate_not_past], default=timezone.now)
+	article 	= models.OneToOneField(Article, verbose_name=u'文章标题', on_delete=models.CASCADE)
+	publisher 	= models.ForeignKey(User, verbose_name=u'发布人', on_delete=models.SET_NULL, null=True)
+	category 	= models.ForeignKey(Category, verbose_name=u'所属栏目', on_delete=models.SET_NULL, null=True)
+	state 		= models.CharField(u'发布状态', max_length=15, choices=PUBLISH_STATE, default='unpublished')
+	pub_date 	= models.DateTimeField(u'发布日期', validators=[validate_not_past], default=timezone.now)
 	create_date = models.DateField(u'创建日期', auto_now_add=True)
+	broadcast	= models.BooleanField(u'显示在中心动态中', default=True)
 	
 	class Meta:
 		verbose_name = u'发布'
 		verbose_name_plural = u'发布'
-	
+
+
 	def __unicode__(self):
 		return self.category.__unicode__() + u'-' + self.article.__unicode__()
 	
+	def get_url(self):
+		return "/pages/%s/%d" % (self.category.abbr, self.pk)
+
 
 def user_uploads_path(instance, filename):
 # 	if hasattr(instance, "uploaded_by"):
@@ -115,3 +121,4 @@ class Carousel(models.Model):
 		verbose_name = u'首页图片'
 		verbose_name_plural = u'首页图片'
 	
+	"{{ MEDIA_PREFIX }}{{ carousel.image }}"

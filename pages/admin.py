@@ -43,7 +43,7 @@ class AttachmentInline(admin.TabularInline):
     form = AttachmentForm
     fields = ('desc', 'file', 'uploaded_by')
 #     readonly_fields = ('uploaded_by', )
-    extra = 1
+    extra = 0
     
     def get_formset(self, request, obj=None, **kwargs):
         initial = []
@@ -57,7 +57,7 @@ class AttachmentInline(admin.TabularInline):
 
 class PublishmentInline(admin.StackedInline):
     model = Publishment
-    fields = ('category', 'state', 'pub_date')
+    fields = ('category', 'state', 'pub_date', 'broadcast')
     template = 'admin/nolabel_stack.html'
     
 @admin.register(Article, site=admin_site)
@@ -150,7 +150,7 @@ class PublishmentAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     model = Category
     date_hierarchy = 'create_date'
-    list_display = ('name', 'desc', 'parent', 'display_order', 'create_date')
+    list_display = ('name', 'abbr', 'desc', 'parent', 'display_order', 'create_date')
     list_filter = (
                    ('parent', ExistedForeignKeyListFilter),
                    )

@@ -1,6 +1,11 @@
-<div class="col-lg-4" style="text-align: center;">
-  <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="120" height="120">
-  <h2>{{ name }}</h2>
-  <p>该项目的相关介绍</p>
-  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+{% load staticfiles %}
+<div class="col-lg-4 quick-link" style="text-align: center;">
+  <a href="{{ link.link }}">
+  	<img class="img-circle link-icons" id="link-icon-{{ forloop.counter }}" src="{% static link.icon %}" alt="{{ link.name }}">
+  </a>
+  <h3>{{ link.name }}</h3>
+  {% if link.desc %}
+  	<p>{{ link.desc }}</p>
+  {% endif %}
+  <!-- <p><a class="btn btn-default" href="{{ link.url }}" role="button">了解详情 &raquo;</a></p> -->
 </div><!-- /.col-lg-4 -->

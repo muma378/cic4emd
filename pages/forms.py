@@ -7,6 +7,9 @@ class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
         fields = ['title', 'author', 'content']
+        widgets = {
+            'title': forms.TextInput(attrs={'style':"width:70%"})
+        }
         
 class FigureForm(forms.ModelForm):
     class Meta:
@@ -19,10 +22,4 @@ class AttachmentForm(forms.ModelForm):
     class Meta:
         model = Attachment
         fields = ['desc', 'file', 'uploaded_by']
-        
-#     def clean_uploaded_by(self):
-
-    def clean(self):
-        cleaned_data = super(AttachmentForm, self).clean()
-        import pdb;pdb.set_trace()
         

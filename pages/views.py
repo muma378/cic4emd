@@ -1,17 +1,33 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
-from .models import Figure, Carousel
+from .models import Figure, Carousel, Publishment, Attachment
 from .forms import FigureForm
 from cic4emd import settings
+from utils.common import tz_now
+
 # Create your views here.
 def index(request):
     carousels = Carousel.objects.all().order_by("-date_uploaded")[:settings.CAROUSEL_IMAGES_NUM]
-    context = {"links":[u'少数名族事业发展蓝皮书', u'创新平台', u'民族事务数据库'], 
-                "news_list":[u'新闻资讯', u'工作简报', u'通知公告'],
-                "carousels":carousels}
     
+    news_list = Publishment.objects.exclude(state='unpublished').exclude(broadcast=False).filter(pub_date__lte=tz_now()).order_by("-pub_date")[:settings.NEWS_LISTED_INDEX]
+    context = {"links":settings.QUICK_LINKS, 
+                "news_list":news_list,
+                "carousels":carousels}
     return render(request, "pages/index.html", context)
+
+def category_archive(request, category_abbr):
+    context = {}
+    return render(request, "pages/list.html", context)
+
+def publishment(request, category_abbr, publishment_id):
+    content = get_object_or_404(Publishment, pk=publishment_id) # TODO: only published is ought to be seen
+    if content.category.abbr != category_abbr:
+        raise Http404
+
+    attachments = Attachment.objects.filter(article=content.article)
+    context = {"publishment": content, "title": content.article, "attachments": attachments}
+    return render(request, "pages/content.html", context)
 
 def browse(request):
     figures = Figure.objects.filter(uploaded_by=request.user).order_by("-date_uploaded")[:settings.LISTED_IMAGES_NUM]
