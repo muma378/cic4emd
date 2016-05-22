@@ -1,22 +1,26 @@
- <div class="navbar-header">
-  <a class="navbar-brand" id="cic-navbar-brand" href="/index">首页</a>
+<div class="collapse navbar-collapse cic-navbar-collapse">
+  
+  <ul class="navbar cic-nav">
+    <li class="cic-navbar-item">
+      <a class="cic-navbar-main" id="cic-navbar-index" href="/">首页</a>
+    </li>
+    {% for category in categories %}
+      {% if category.children %} 
+        <li class="cic-navbar-item">
+          <a href="{{ category.parent.get_url }}" class="dropdown-toggle cic-navbar-main" id="cic-navbar-btn-{{ forloop.counter }}"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            {{ category.parent.name }} 
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu cic-navbar-pop">
+            {% for child in category.children %}
+              <li><a class="cic-navbar-sub" href="{{ child.get_url }}">{{ child.name }}</a></li>
+            {% endfor %}
+          </ul>
+      {% else %}
+        <li class="cic-navbar-item">
+          <a class="cic-navbar-main" id="cic-navbar-btn-{{ forloop.counter }}" href="{{ category.parent.get_url }}">{{ category.parent.name }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
 </div>
-<ul class="nav navbar-nav">
-  {% for category in categories %}
-    {% if category.children %} 
-      <li class="dropdown">
-        <a href="{{ category.parent.get_url }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          {{ category.parent.name }} 
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-          {% for child in category.children %}
-            <li><a href="{{ child.get_url }}">{{ child.name }}</a></li>
-          {% endfor %}
-        </ul>
-      </li>        
-    {% else %}
-      <li><a href="{{ category.parent.get_url }}">{{ category.parent.name }}</a></li>
-    {% endif %}
-  {% endfor %}
-</ul>

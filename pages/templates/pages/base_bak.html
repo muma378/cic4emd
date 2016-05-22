@@ -23,39 +23,29 @@
   </head>
 
   <body>
-    <div class="cic-container">
-      <div class="cic-header">
-        <div class="cic-branding">
-          <div class="container">
-            <div class="row">{% block branding %}{% endblock %}</div>
-          </div>
-        </div>
-        <div class="cic-navigation">
-          <div class="container">
-            <div class="row">{% block navigation %}{% endblock %}</div>
-          </div>
+    <div id="cic-container" class="container">
+      <div id="cic-header">
+        <div class="container">
+          <div class="cic-branding" class="row">{% block branding %}{% endblock %}</div>
+          <div class="cic-nav" class="row">{% block navigation %}{% endblock %}</div>
         </div>
       </div>
       
-      <div class="cic-body">
-        <div class="cic-breadcrumb">
-          {% block breadcrumb %}{% endblock %}
-        </div>
+      {% block breadcrumb %}{% endblock %}
 
-        <div class="cic-main">
-          <div class="container">
-            {% block main %}{% endblock %}
-          </div>
+      <div id="cic-main">
+        <div class="container">
+          {% block main %}{% endblock %}
         </div>
       </div>
-
+      
       <div id="cic-footer">{% block footer %}{% endblock %}</div>
     </div>
+
     <script src="/static/jquery/1.11.3/jquery.min.js"></script>
     <script src="/static/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/static/asset/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="/static/js/pages.js"></script>
     {% block extrascript %}{% endblock %}
   </body>
 </html>

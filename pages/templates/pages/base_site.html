@@ -8,26 +8,21 @@
 {% endblock %}
 
 {% block branding %}
-		<div class="col-md-1 col-lg-1">
-			<img class="image-circle" id="cic-logo" src="{% static "asset/img/logo.jpeg" %}"> 
+		<div class="col-md-1 col-lg-1 col-md-offset-2 col-lg-offset-2">
+			<img class="image-circle" id="cic-logo" src="{% static "asset/img/logo.png" %}"> 
 		</div>
 		<div class="col-md-6 col-lg-6">
-			<h1 id="cic-site-name"><span>少数民族事业发展协同创新中心</span></h1>
-		</div>
-		<div class="col-md-2 col-md-offset-3">
-			<!-- <span id="search-form">search</span> -->
-		</div>
+      <img id='cic-sitename' src="{% static "asset/img/sitename.png" %}">
+    </div>
 {% endblock %}
 
 {% block navigation %}
  <!-- <div class="navbar-wrapper"> -->
-    <nav class="navbar navbar-inverse navbar-static-top">
-      <div class="container">
-        <div id="cic-navbar" class="navbar-collapse collapse">
+    <nav class="navbar cic-navbar">
+      <div class="container-fluid">
         {% block navbar %}
             {% include "pages/navbar.html" with categories=navigation only %}
         {% endblock %}
-        </div>
       </div>
     </nav>
 <!-- </div> -->

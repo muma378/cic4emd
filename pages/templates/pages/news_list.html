@@ -1,6 +1,9 @@
 
+<div class="cic-block-title" >
+  <span class="cic-block-title-main">中心动态</span>
+  <span class="cic-block-title-abbr">Latest News</span>
+</div>
 <div class="cic-trend">
-  <h3 id='cic-trend-title'>中心动态</h3>
   <div class="list-group">
   {% for news in news_list %}
     <a href="{{ news.get_url }}" class="list-group-item {% if forloop.first %} active{% endif %}">
