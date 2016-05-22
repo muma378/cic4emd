@@ -29,7 +29,7 @@ def index(request):
         pubs = pub_queryset.filter(category=category).order_by("-pub_date")[:settings.NEWS_ARCHIVE_NUM]
         if pubs:    
             try:
-                cover = pubs.first().article.figure_set.first().image.url
+                cover = pubs.first().article.figure_set.first().image
             except AttributeError, e:
                 cover = settings.PLACEHOLDER_COVER
 

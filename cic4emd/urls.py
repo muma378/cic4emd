@@ -21,7 +21,7 @@ from admin import admin_site
 import settings
 
 urlpatterns = [
-    url(r'^index/', include('pages.urls', namespace='pages')),
+    url(r'^$', 'pages.views.index', name='index'),
     url(r'^pages/', include('pages.urls', namespace='pages')),
     url(r'^admin/', admin_site.urls),
 #     url(r'^admin/', admin.site.urls),
