@@ -1,11 +1,16 @@
 {% load staticfiles %}
-<div class="col-lg-4 quick-link" style="text-align: center;">
-  <a href="{{ link.link }}">
-  	<img class="img-circle link-icons" id="link-icon-{{ forloop.counter }}" src="{% static link.icon %}" alt="{{ link.name }}">
-  </a>
-  <h3>{{ link.name }}</h3>
-  {% if link.desc %}
-  	<p>{{ link.desc }}</p>
-  {% endif %}
-  <!-- <p><a class="btn btn-default" href="{{ link.url }}" role="button">了解详情 &raquo;</a></p> -->
+<div class="col-lg-4">
+	<div class="cic-block">
+		  <a href="{{ link.link }}">
+		  	<div class="cic-quick-link" id="cic-link-{{ forloop.counter }}">
+		  	<img class="img-circle link-icons" id="link-icon-{{ forloop.counter }}" src="{% static link.icon %}" alt="{{ link.name }}">
+			  <div class="link-text">
+				  <span class="link-name">{{ link.name }}</span>
+			 	  {% if link.desc %}
+				  	<span class="link-desc">{{ link.desc }}</span>
+				  {% endif %}	
+			  </div>
+			 </div>
+		  </a>
+	</div>
 </div><!-- /.col-lg-4 -->

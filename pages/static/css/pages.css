@@ -247,13 +247,50 @@ a:active {
 
 
 /* Quick-links */
-.quick-link {
+
+.cic-block{
+	height: 95px;
+}
+
+ .cic-quick-link {
+	width: 100%;
+	display: inline-block;
+ }
+
+.link-icons {
+	height: 80px;
+	width: 80px;
+}
+
+.cic-quick-link > div.link-text {
+	display: inline-block;
+	width: 66%;
+	vertical-align: middle;
 	text-align: center;
 }
 
-.link-icons {
-	height: 100px;
-	width: 100px;
+.link-text > span.link-name {
+	display: block;
+	font-size: 17px;
+	font-family: STSong,SimSun,宋体,NSimSun,sans-serif;;
+}
+
+.link-text > span.link-desc {
+	display: block;
+	font-size: 7px;
+	font-family: cursive;
+}
+
+#cic-link-1 span {
+	color: #b89f31;
+}
+
+#cic-link-2 span {
+	color: #9ace5b;
+}
+
+#cic-link-3 span {
+	color: #13a38d;
 }
 
 

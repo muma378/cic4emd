@@ -12,19 +12,19 @@ QUICK_LINKS = [
 		"name": u"少数民族事业发展蓝皮书", 
 		"icon": "asset/img/book.png", 
 		"link": "/pages/lps", 
-		"desc": u"协创中心成果一览",
+		"desc": u"Blue Books for Ethnic Minority Development",
 	},
 	{
 		"name": u"创新平台", 
 		"icon": "asset/img/gear.png", 
 		"link": "/pages/cxpt", 
-		"desc": u"包含5大平台，16个研究团队", 
+		"desc": u"Innovative Platforms", 
 	},
 	{
 		"name": u"民族事务数据库", 
 		"icon": "asset/img/folder.png", 
 		"link": "http://www.muc.edu.cn/",
-		"desc": u"人口，经济，社会，教育，整合最新民族数据", 
+		"desc": u"Ethnic Database", 
 	},
 ]
 
