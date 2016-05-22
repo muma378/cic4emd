@@ -1,4 +1,4 @@
-
+{% load staticfiles %}
 <div class="cic-block-title" >
   <span class="block-title-main">中心动态</span>
   <span class="block-title-abbr">Latest News</span>
@@ -7,7 +7,7 @@
   <div class="list-group">
   {% for news in news_list %}
     <a href="{{ news.get_url }}" class="list-group-item {% if forloop.first %} active {% endif %} cic-trend-item">
-      <p class="list-group-item-text trend-meta">{{ news.category.name }} - {{ news.pub_date | date:"Y/m/d" }}</p>
+      <p class="list-group-item-text trend-meta"> <span class="cic-rectangle"> </span>&nbsp;{{ news.category.name }} - {{ news.pub_date | date:"Y/m/d" }}</p>
       <h4 class="list-group-item-heading trend-title">{{ news.article.title }}</h4>
       <small class="list-group-item-text trend-content">{{ news.article.content | striptags | cut:' ' | safe | truncatechars:80 }}</small>
     </a>

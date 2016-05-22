@@ -30,19 +30,42 @@ QUICK_LINKS = [
 
 FRIENDLY_LINKS = [
 	{
-		"name": u"国家民委民研中心",
+		"name": u"国家民委民族研究中心",
 		"link": "#",
 	},
 	{
-		"name": u"中央名族大学",
-		"link": "http://www.muc.edu.cn/",
-	},
-	{
-		"name": u"中南民族大学",
+		"name": u"国家发展研究中心",
 		"link": "#",
 	},
-
+	{
+		"name": u"中国社会科学院宗教研究所",
+		"link": "#",
+	},
+	{
+		"name": u"中国社会科学院民族学与人类学研究所",
+		"link": "#",
+	},
+	{
+		"name": u"国家宗教局",
+		"link": "#",
+	},
+	{
+		"name": u"上海宗教文化研究中心",
+		"link": "#",
+	},
 ]
 
-NEWS_ARCHIVE_ABBRS = ['xwzx', 'gzjb', 'tzgg', 'xwgg'] 
+MORE_LINKS = [
+	{
+		"name": u"国家民委民族研究中心",
+		"link": "#",
+	},
+	{
+		"name": u"国家发展研究中心",
+		"link": "#",
+	},
+]
+
+
+NEWS_ARCHIVE_ABBRS = ['tzgg',  'zxcg', 'xwzx', 'xwgg',] 
 PLACEHOLDER_COVER = 'asset/img/placeholder.png'

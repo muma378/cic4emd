@@ -1,15 +1,17 @@
-{% load staticfiles %}
-<div class="col-md-7">
-  <h2 class="archive-heading" id="archive-{{ news_archive.category.abbr }}">{{ news_archive.category }}</h2>
-  <ul class="archive-list">
-  	{% for pub in news_archive.publishments %}
-	  <li id="news-archive-{{ forloop.counter }}">
-	  	<a href="{{ pub.get_url }}" class="archive-name">{{ pub.article }} </a> 
-	  	<span class="archive-date">{{ pub.pub_date | date:"Y/m/d" }}</span>
-	  </li>
-	{% endfor %}
-	</ul>
-</div>
-<div class="col-md-5">
-  <img class="featurette-image img-thumbnail center-block" src="{% static news_archive.cover.url %}" alt="cover">
+<div class="col-md-6">
+	<div class="cic-block">
+	  <div class="cic-block-title" id="archive-{{ news_archive.category.abbr }}">
+  		<span class="block-title-main">{{ news_archive.category }}</span>
+  		<span class="block-title-abbr">{{ news_archive.category.desc }}</span>
+	  </div>
+	  <hr class="featurette-divider">
+	  <ul class="archive-list">
+	  	{% for pub in news_archive.publishments %}
+		  <li id="news-archive-{{ forloop.counter }}">
+		  	<a href="{{ pub.get_url }}" class="archive-name">{{ pub.article }} </a> 
+		  	<span class="archive-date">{{ pub.pub_date | date:"Y/m/d" }}</span>
+		  </li>
+		{% endfor %}
+		</ul>
+	</div>
 </div>

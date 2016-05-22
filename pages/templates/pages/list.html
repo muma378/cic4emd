@@ -2,20 +2,21 @@
 {% load staticfiles %}
 
 {% block extrastyle %}{{ block.super }}
-<link href="{% static "css/blog.css" %}" rel="stylesheet">
+<link href="{% static "css/list.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block main %}
 <div class="container">
 	{% block postlist %}
+    <div class="row">
+      <div class="cic-block cic-news-list">
 
-      <div class="blog-header">
-        <h4 class="blog-title">{{ category.name }}</h4>
-        <p class="lead blog-description">{{ category.desc }}</p>
-      </div>
+        <div class="cic-block-title" >
+          <span class="block-title-main">{{ category.name }}</span>
+          <!-- <span class="block-title-abbr">{{ category.desc }}</span> -->
+        </div>
 
-      <div class="row">
-        <div class="col-sm-8 col-md-8 blog-main">
+      <div class="cic-news-post">
       	{% for publishment in publishments %}
       	  <hr class="featurette-divider">
           <div class="blog-post">
@@ -43,28 +44,7 @@
 	        </nav>
 
         </div><!-- /.blog-main -->
-       {% endblock %}
-
-		<div class="col-sm-3 col-sm-offset-1 col-md-3 col-md-offset-1 blog-sidebar">
-          <div class="sidebar-module">
-            <h4>同类栏目</h4>
-            <ol class="list-unstyled">
-            	{% for category in related %}
-            		<li><a href="{{ category.get_url }}">{{ category.name }}</a></li>
-            	{% endfor %}
-            </ol>
-          </div>
-          <div class="sidebar-module">
-            <h4>友情链接</h4>
-            <ol class="list-unstyled">
-        	{% for friend in friendly_links %}
-              <li><a href="{{ friend.link }}">{{ friend.name }}</a></li>
-            {% endfor %}
-            </ol>
-          </div>
-        </div><!-- /.blog-sidebar -->
-
-      </div><!-- /.row -->
-
-    </div><!-- /.container -->
+    </div><!-- /.row -->
+  {% endblock %}
+</div><!-- /.container -->
 {% endblock %}

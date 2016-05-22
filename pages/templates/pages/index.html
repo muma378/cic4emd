@@ -29,11 +29,18 @@
   </div>
 
   {% block news-archive %}
-    {% for news_archive in news_archives %}
-      <hr class="featurette-divider">
-      <div class="row archive-container">
-        {% include "pages/news_archives.html" with news_archive=news_archive only %}
-      </div>
-    {% endfor %}
+    <div class="row archive-container">
+      {% for news_archive in news_archives %}
+        <!-- <hr class="featurette-divider"> -->
+          {% include "pages/news_archives.html" with news_archive=news_archive only %}
+      {% endfor %}
+    </div>
   {% endblock %}
+
+  {% block freiendly-links %}
+    <div class="row">
+      {% include "pages/friendly_links.html" with links=friendly_links.links more=friendly_links.more only %}
+    </div>
+  {% endblock %}
+
 {% endblock %}

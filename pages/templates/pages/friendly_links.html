@@ -1,0 +1,11 @@
+<div class="cic-block cic-friendly-links">
+    <div class="col-md-7 cic-links">
+      {% for link in links %}
+      	{% if not forloop.first %}<span class="vertical-sep">&nbsp;|&nbsp;</span>{% endif %}<a href="{{ link.link }}">{{ link.name }}</a>
+      {% endfor %}
+    </div>
+    <div class="col-md-5 cic-more">
+      <span  class="vertical-sep"></span>
+      <span>options</span>
+    </div>
+</div>

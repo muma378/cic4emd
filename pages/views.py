@@ -28,21 +28,28 @@ def index(request):
     for category in news_archives_categories:
         pubs = pub_queryset.filter(category=category).order_by("-pub_date")[:settings.NEWS_ARCHIVE_NUM]
         if pubs:    
-            try:
-                cover = pubs.first().article.figure_set.first().image
-            except AttributeError, e:
-                cover = settings.PLACEHOLDER_COVER
+        #     try:
+        #         cover = pubs.first().article.figure_set.first().image
+        #     except AttributeError, e:
+        #         cover = settings.PLACEHOLDER_COVER
 
             news_archives.append({
                 "category":category, 
                 "publishments": pubs,
-                "cover": cover,})
+                # "cover": cover,
+                })
+
+    friendly_links = {
+        'links': settings.FRIENDLY_LINKS, 
+        'more': settings.MORE_LINKS
+        }
 
     context = {"links":settings.QUICK_LINKS, 
                 "news_list":news_list,
                 "news_archives": news_archives,
                 "carousels":carousels,
-                "navigation": get_categories()
+                "navigation": get_categories(),
+                "friendly_links": friendly_links,
                 }
     return render(request, "pages/index.html", context)
 
@@ -97,7 +104,6 @@ def category_archive(request, category_abbr):
                 "category": category,
                 "publishments": publishments[start:end],
                 "related": related,
-                "friendly_links": settings.FRIENDLY_LINKS,
                 "pagination": pagination,
                 }
     return render(request, "pages/list.html", context)
