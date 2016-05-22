@@ -1,0 +1,71 @@
+
+
+@media (min-width: 970px) {
+.cic-branding {
+	height: 105px;
+}
+
+.cic-branding #cic-logo {
+	margin-top: 15px;
+	width: 80px; 
+	height: 80px;
+}
+
+.cic-branding #cic-sitename {
+	height: 55px;
+	margin-top: 29px;
+	padding-left: 23px;
+}
+
+.cic-nav > li {
+	width: 150px;
+}
+
+.carousel {
+	height: 365px;
+}
+
+.carousel .item {
+	height: 365px;
+}
+
+.cic-block.cic-block-trend {
+	height: 445px;
+}
+
+}
+
+@media (min-width: 1170px) {
+.cic-branding {
+	height: 135px;
+}
+
+.cic-branding #cic-logo {
+	margin-top: 20px;
+	width: 100px; 
+	height: 100px;
+}
+
+.cic-branding #cic-sitename {
+	height: 70px;
+	margin-top: 34px;
+	padding-left: 14px;
+}
+
+.cic-nav > li {
+	width: 150px;
+}
+
+.carousel {
+	height: 478px;
+}
+
+.carousel .item {
+	height: 478px;
+}
+
+.cic-block.cic-block-trend {
+	height: 555px;
+}
+
+}
