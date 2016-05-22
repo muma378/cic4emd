@@ -1,0 +1,18 @@
+/* css for list of news */
+.cic-news-list {
+	min-height: 670px;
+	width: 85%;
+	padding: 0px 26px 45px 160px; 
+}
+
+.cic-news-list > div.cic-block-title {
+	height: 60px;
+	width: 100%;
+	background-color: #5a5a5a;
+}
+
+.cic-news-list > div > span.block-title-main {
+	
+	font-size: 20px;
+	color: #ffffff
+}
