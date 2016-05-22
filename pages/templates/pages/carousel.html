@@ -1,8 +1,8 @@
 {% load static %}
 {% get_media_prefix as MEDIA_PREFIX %}
 <div class="cic-block-title" >
-  <span class="cic-block-title-main">中心风采</span>
-  <span class="cic-block-title-abbr">News Pictures</span>
+  <span class="block-title-main">中心风采</span>
+  <span class="block-title-abbr">News Pictures</span>
 </div>
 <div id="cic-carousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
@@ -18,8 +18,6 @@
           <div class="container">
             <div class="carousel-caption">
               <p><a href="{{ carousel.publishment.get_url }}">{{ carousel.desc }}</a></p>
-<!--               <p><a class="btn btn-lg btn-primary" href="{{ carousel.publishment.get_url }}" role="button">了解详情</a></p>
- -->
             </div>
           </div>
         </div>

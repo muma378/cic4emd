@@ -17,6 +17,7 @@
 
     {% block extrastyle %}{% endblock %}
     <link href="{% static "css/pages.css" %}" rel="stylesheet">
+    <link href="{% static "css/response.css" %}" rel="stylesheet">
     {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}" />{% endif %}
     {% block extrahead %}{% endblock %}
     {% block blockbots %}<meta name="robots" content="all" />{% endblock %}
@@ -56,6 +57,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/static/asset/js/ie10-viewport-bug-workaround.js"></script>
     <script src="/static/js/pages.js"></script>
+
     {% block extrascript %}{% endblock %}
   </body>
 </html>
