@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import math
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 from django.db.models import Q
@@ -88,15 +89,31 @@ def category_archive(request, category_abbr):
     except ValueError, e:
         raise Http404
     start, end = (index-1)*settings.NEWS_PER_PAGE_NUM, index*settings.NEWS_PER_PAGE_NUM
-    if index < 1 or start > publishments.count():
+    
+    total = publishments.count()
+    if index < 1 or start > total:
         raise Http404
 
     next, prev = None, None
-    if publishments.count() > end:
+    if total > end:
         next = index + 1
     if index > 1:
         prev = index - 1
-    pagination = { "index": index, "prev": prev, "next": next}
+
+    pages = int( math.ceil( total/float(settings.NEWS_PER_PAGE_NUM) ))
+    max_shown = settings.PAGINATION_DISPLAYED
+    displayed_range = (max_shown - 1) / 2
+    if pages < max_shown:
+        displayed_pages = range(1, pages+1)
+    elif index <= displayed_range:
+        displayed_pages = range(1, max_shown+1)
+    elif index >= pages - displayed_range:
+        displayed_pages = range(pages-max_shown, pages+1)
+    else:
+        displayed_pages = range(index-displayed_range, index+displayed_range+1)
+
+    # TODO: disable button if prev or next was none
+    pagination = { "index": index, "prev": prev if prev else 1, "next": next if next else pages, "pages": pages, "displayed_pages": displayed_pages}
 
 
     context = {"title": category.name,

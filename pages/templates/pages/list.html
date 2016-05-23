@@ -32,5 +32,17 @@
 {% endblock %}
 
 {% block callboard-footer %}
-
+	<div class="cic-pagination">
+		<span id="pagination-now">当前 <p>{{ pagination.index }}/{{ pagination.pages }}</p> 页</span>
+		<span id="pagination-count">共有 <p>{{ publishments|length }}</p> 条记录</span>
+		<div class="pagination-pages">
+			<a href="{{ category.get_url }}?page=1" id="pages-first">首页</a>
+			<a href="{{ category.get_url }}?page={{ pagination.prev }}" id="pages-prev" class="{% if not pagination.prev %}disabled{% endif %}">上一页</a>
+			{% for page in pagination.displayed_pages %}
+				<a href="{{ category.get_url }}?page={{ page }}" class="{% if pagination.index == page %}active"{% endif %}>{{ page }}</a>
+			{% endfor %}
+			<a href="{{ category.get_url }}?page={{ pagination.next }}" id="pages-next" class="{% if not pagination.next %}disabled{% endif %}">下一页</a>
+			<a href="{{ category.get_url }}?page={{ pagination.pages }}" id="pages-last">末页</a>
+		</div>
+	</div>
 {% endblock %}

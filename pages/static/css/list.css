@@ -36,3 +36,44 @@
 	margin-top: 23px;
 	margin-bottom: 35px;
 }
+
+.cic-pagination {
+	display: inline-block;
+	width: 100%;
+	padding-left: 26px;
+	padding-right: 36px; 
+	font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,sans-serif;
+	font-size: 13px;
+}
+
+.cic-pagination p {
+	display: inline;
+	color: #c9273a;
+}
+
+.cic-pagination > span#pagination-now,
+.cic-pagination > span#pagination-count {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.cic-pagination > div.pagination-pages {
+	display: inline-block;
+	float: right;
+}
+
+.pagination-pages > a {
+	display: inline-block;
+	height: 22px;
+	min-width: 22px;
+	border: 1px solid #727171;
+	text-align: center;
+	color: #727171;
+}
+
+.pagination-pages > a.active,
+.pagination-pages > a:hover {
+	border: 1px solid #ffffff;
+	color: #ffffff;
+	background-color: #c9273a;
+}

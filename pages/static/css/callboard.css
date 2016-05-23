@@ -63,13 +63,13 @@
 
 .callboard-body {
 	padding: 52px 46px 40px 46px;
-	min-height: 585px;
+	min-height: 575px;			/* 715(min-height) - 70 (head) - 70(footer) */
 	background-color: #ffffff;
 }
 
 .callboard-footer {
-	height: 60px;
-	padding-bottom: 40px;
+	height: 70px;
+	padding-bottom: 50px;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 	background-color: #ffffff;
