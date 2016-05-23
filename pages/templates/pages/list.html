@@ -1,50 +1,36 @@
-{% extends "pages/base_site.html" %}
+{% extends "pages/callboard.html" %}
 {% load staticfiles %}
 
 {% block extrastyle %}{{ block.super }}
 <link href="{% static "css/list.css" %}" rel="stylesheet">
 {% endblock %}
 
-{% block main %}
-<div class="container">
-	{% block postlist %}
-    <div class="row">
-      <div class="cic-block cic-news-list">
+{% block callboard-tabs %}
+	{% for subcategory in subcategories %}
+		<a href="{{ subcategory.get_url }}">
+			<span id="callboard-tab-{{ subcategory.abbr }}" class="callboard-tab {% if subcategory == category %} active {% endif %}">{{ subcategory.name }}</span>
+		</a>
+	{% endfor %}
+{% endblock %}
 
-        <div class="cic-block-title" >
-          <span class="block-title-main">{{ category.name }}</span>
-          <!-- <span class="block-title-abbr">{{ category.desc }}</span> -->
-        </div>
-
-      <div class="cic-news-post">
-      	{% for publishment in publishments %}
-      	  <hr class="featurette-divider">
-          <div class="blog-post">
-            <h3 class="blog-post-title"><a href="{{ publishment.get_url }}">{{ publishment.article.title }}</a></h3>
-            <p class="blog-post-meta">{{ publishment.pub_date | date:"Y/m/d" }}&emsp;  {% if publishment.publisher %} {{ publishment.publisher.username }} {% endif %} </p>
-			<div class="blog-post-body">
+{% block callboard-body %}
+	{% for publishment in publishments %}
+		<div class="cic-publishment" id="cic-publishment-{{ publishment.id }}">
+			<div class="publishment-head">
+				<span class="cic-square"></span>
+				<a href="{{ publishment.get_url }}" class="publishment-title">{{ publishment.article.title }}</a>
+				<span class="publishment-meta">
+					{{ publishment.pub_date | date:"Y-m-d" }}
+				</span>
+			</div>
+			<div class="publishment-content">
 				{{ publishment.article.content | striptags | cut:' ' | safe | truncatechars:200 }}
 			</div>
-           </div>	<!-- /.blog-post -->
-        {% endfor %}
-			<nav>
-	            <ul class="pager">	
-	            {% if not pagination.prev %}
-	          	  <li class="disabled"><a href="#"> 
-	          	{% else %}
-	          	  <li><a href="{{ category.get_url }}?page={{ pagination.prev }}"> 
-	          	{% endif %}上一页</a></li>
+			<hr class="featurette-divider">
+		</div>
+	{% endfor %}
+{% endblock %}
 
-	          	{% if not pagination.next %}
-	          	  <li class="disabled"><a href="#"> 
-	          	{% else %}
-	          	  <li><a href="{{ category.get_url }}?page={{ pagination.next }}"> 
-	          	{% endif %}下一页</a></li>
-	            </ul>
-	        </nav>
+{% block callboard-footer %}
 
-        </div><!-- /.blog-main -->
-    </div><!-- /.row -->
-  {% endblock %}
-</div><!-- /.container -->
 {% endblock %}

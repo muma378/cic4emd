@@ -9,6 +9,17 @@ body {
 	padding-bottom: 0px;
 }
 
+a:active {
+	text-decoration: none;
+	color: initial;
+}
+
+a,
+a:hover {
+	/*color: #ffffff;*/
+	text-decoration: none;
+}
+
 .cic-container {
 	min-height: 100%;
 	width: 100%;
@@ -17,10 +28,8 @@ body {
 	border: 0px;
 }
 
-a:active {
-	text-decoration: none;
-	color: initial;
-}
+
+
 
 /* branding and logo */
 .cic-branding {
@@ -122,7 +131,7 @@ a:active {
 /* main in common */
 
 .cic-main {
-	padding-top: 50px;
+	padding-top: 55px;
 	padding-bottom: 40px;
 }
 
@@ -237,11 +246,15 @@ a:active {
 	font-size: 14px;
 }
 
-.trend-meta > span.cic-rectangle {
+.cic-rectangle {
 	display: inline-block;
+	height: 10px;
 	width: 6px;
-	height: 14px;
 	background-color: #c9273a;
+}
+
+.trend-meta > span.cic-rectangle {
+	height: 14px;
 }
 
 .trend-title {
@@ -384,13 +397,15 @@ footer > .cic-footer {
 
 .cic-footer  > .cic-trivial-info {
 	display: inline-block;
-	margin-top: 28px;
+	margin-top: 25px;
+	/*margin-bottom: 3px;*/
 	font-size: 10px;
 }
 
 .cic-footer  > .cic-important-info {
 	display: block;
-	margin-bottom: 36px;
+	/*margin-top: 3px;*/
+	margin-bottom: 34px;
 	font-size: 12px;
 }
 
@@ -402,6 +417,11 @@ footer > .cic-footer {
  	margin: 0px 0px 18px 0px; /* Space out the Bootstrap <hr> more */
 }
 
-.publishment-container{
-	width: 96%;
+.cic-square {
+	display: inline-block;
+	height: 5px;
+	width: 5px;
+	vertical-align: middle;
+	background-color: #c9273a;
 }
+

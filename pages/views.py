@@ -77,10 +77,10 @@ def category_archive(request, category_abbr):
     if category.parent:     # for categories in top level
         publishments = pub_queryset.filter(category=category)
         # look up related categories
-        related = Category.objects.filter(Q(parent=category.parent)).exclude(pk=category.id)
+        related = Category.objects.filter(Q(parent=category.parent))
     else:
         publishments = pub_queryset.filter(Q(category__parent=category) | Q(category=category))
-        related = Category.objects.filter(parent=category).exclude(pk=category.id)
+        related = Category.objects.filter(parent=category)
 
     # get info for pagination
     try:
@@ -103,7 +103,7 @@ def category_archive(request, category_abbr):
                 "navigation": get_categories(),
                 "category": category,
                 "publishments": publishments[start:end],
-                "related": related,
+                "subcategories": related,
                 "pagination": pagination,
                 }
     return render(request, "pages/list.html", context)

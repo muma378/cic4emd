@@ -1,18 +1,38 @@
 /* css for list of news */
-.cic-news-list {
-	min-height: 670px;
-	width: 85%;
-	padding: 0px 26px 45px 160px; 
+.cic-publishment {
+	padding-left: 22px;		/* padding 20px + square 2px */
+	padding-right: 114px;	/* 114 = 160 - 46 */
 }
 
-.cic-news-list > div.cic-block-title {
-	height: 60px;
-	width: 100%;
-	background-color: #5a5a5a;
+.publishment-head {
+	padding-bottom: 20px;
 }
 
-.cic-news-list > div > span.block-title-main {
-	
-	font-size: 20px;
-	color: #ffffff
+.publishment-head > span.cic-square {
+	margin-left: -25px;
+	margin-right: 15px;
+}
+
+.publishment-head > a {
+	color: black; 
+	font-size: 14px;
+	font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,sans-serif;
+}
+
+.publishment-head > span.publishment-meta {
+	display: inline-block;
+	float: right;
+	color: #c9273a;
+	font-size: 11px;
+}
+
+
+.publishment-content {
+	font-size: 12px;
+	font-family: STSong, SimSun, 宋体, NSimSun, sans-serif;
+}
+
+.cic-publishment > hr.featurette-divider {
+	margin-top: 23px;
+	margin-bottom: 35px;
 }
