@@ -1,0 +1,77 @@
+/* css for callboard */
+.cic-callboard {
+	min-height: 715px;
+	width: 85%;
+	margin-left: auto;
+	margin-right: auto;
+	/*padding: 0px 26px 45px 160px; */
+}
+
+.callboard-head {
+	height: 70px;
+	width: 100%;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px; 
+	background-color: #5a5a5a;
+}
+
+.callboard-head-title {
+	display: inline-block;
+	margin-top: 20px;
+	margin-bottom: 25px;
+	margin-left: 25px;
+	font-size: 20px;
+	font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,sans-serif;;
+	color: #ffffff
+}
+
+.callboard-head > div.callboard-tabs {
+	float: right;
+	margin-top: 35px;
+	margin-right: 75px;
+}
+
+.callboard-tabs > a {
+	color: #ffffff;
+}
+
+.callboard-tabs > a:hover {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.callboard-tabs > a > span.callboard-tab {
+	display: inline-block;
+	height: 35px;
+	width: 95px;
+	
+	padding-top: 8px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+
+	text-align: center;
+	font-size: 13px;
+	font-family: STSong, SimSun, 宋体, NSimSun, sans-serif;
+}
+
+
+.callboard-tabs > a > span.callboard-tab.active {
+	color: #c9273a;
+	background-color: #ffffff;	
+}
+
+
+.callboard-body {
+	padding: 52px 46px 40px 46px;
+	min-height: 585px;
+	background-color: #ffffff;
+}
+
+.callboard-footer {
+	height: 60px;
+	padding-bottom: 40px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	background-color: #ffffff;
+}
+
