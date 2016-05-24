@@ -5,7 +5,18 @@
       {% endfor %}
     </div>
     <div class="col-md-5 cic-more">
-      <span  class="vertical-sep"></span>
-      <span>options</span>
+      <div>
+      	<span class="vertical-sep"></span>
+      </div>
+      <div class="more-links">
+      	<span class="cic-square"></span>
+      	<span>&nbsp;更多友情链接</span>
+      	<select name="more-friendly-links" onchange="window.location.href=options[selectedIndex].value" >
+      		<option value="/" selected>------------</option>
+      		{% for link in more %}
+      			<option value="{{ link.link }}">{{ link.name }}</option>
+      		{% endfor %}
+      	</select>
+      </div>
     </div>
 </div>

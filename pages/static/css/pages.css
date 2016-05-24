@@ -29,8 +29,6 @@ a:hover {
 }
 
 
-
-
 /* branding and logo */
 .cic-branding {
 	height: 90px;
@@ -360,29 +358,61 @@ a:hover {
 
 /* friendly links */
 .cic-friendly-links {
-	display: none;
-	max-height: 65px;
+	/*display: none;*/
+	/*max-height: 65px;*/
+	padding-bottom: 10px;
 	overflow: hidden;
+}
+
+.cic-friendly-links a {
+	color: #595757;
 }
 
 .cic-friendly-links a:hover {
 	color: #c9273a;
 }
 
+.cic-links {
+	font-size: 14px;
+	font-family: NSimSun, SimSun, 宋体, sans-serif;
+	line-height: 200%;
+}
+
 .cic-links > span.vertical-sep {
 	color: #c9273a;
 }
 
-.cic-more > span.vertical-sep {
+.cic-more > div {
 	display: inline-block;
-	height: 40px;
+}
+
+.cic-more > div > span.vertical-sep {
+	display: inline-block;
+	height: 51px;
 	width: 2px;
+	margin-right: 30px;
 	background-color: #c9273a;
 }
 
-.cic-friendly-links a {
-	color: #595757;
+.cic-more > .more-links {
+	width: 84%;
+	float: right;
 }
+
+.more-links > span {
+	font-size: 13px;
+	font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,sans-serif;
+	color: #c9273a;
+}
+
+.more-links > select {
+	width: 40%;
+	margin-top: 22px;
+	margin-right: 30px;
+	margin-left: 28px;
+}
+
+
 
 
 /* footer */

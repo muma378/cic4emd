@@ -33,6 +33,10 @@
 	height: 445px;
 }
 
+.cic-more > div > .vertical-sep {
+	display: none;
+}
+
 }
 
 @media (min-width: 1170px) {
