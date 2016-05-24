@@ -32,38 +32,50 @@ QUICK_LINKS = [
 FRIENDLY_LINKS = [
 	{
 		"name": u"国家民委民族研究中心",
-		"link": "#",
+		"link": "http://www.seac.gov.cn/",
 	},
 	{
-		"name": u"国家发展研究中心",
-		"link": "#",
+		"name": u"国务院发展研究中心",
+		"link": "http://www.drc.gov.cn/",
 	},
 	{
 		"name": u"中国社会科学院宗教研究所",
-		"link": "#",
+		"link": "http://iwr.cass.cn/",
 	},
 	{
 		"name": u"中国社会科学院民族学与人类学研究所",
-		"link": "#",
+		"link": "http://iea.cass.cn/index.htm",
 	},
 	{
 		"name": u"国家宗教局",
-		"link": "#",
+		"link": "http://www.sara.gov.cn/",
 	},
 	{
 		"name": u"上海宗教文化研究中心",
-		"link": "#",
+		"link": "http://www.csrcsh.org/",
 	},
 ]
 
 MORE_LINKS = [
 	{
-		"name": u"国家民委民族研究中心",
-		"link": "#",
+		"name": u"中南民族大学",
+		"link": "http://www.scuec.edu.cn/",
 	},
 	{
-		"name": u"国家发展研究中心",
-		"link": "#",
+		"name": u"西南民族大学",
+		"link": "http://www.swun.edu.cn/",
+	},
+	{
+		"name": u"西北民族大学",
+		"link": "http://www.xbmu.edu.cn/",
+	},
+	{
+		"name": u"北方民族大学",
+		"link": "http://www.nwsni.edu.cn/",
+	},
+	{
+		"name": u"大连民族大学",
+		"link": "http://www.dlnu.edu.cn/",
 	},
 ]
 

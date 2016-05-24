@@ -137,5 +137,18 @@ DJANGO_WYSIWYG_FLAVOR = 'ckeditor'
 # DJANGO_WYSIWYG_MEDIA_URL = "//cdn.ckeditor.com/4.5.7/full/"
 DJANGO_WYSIWYG_MEDIA_URL = STATIC_URL + 'ckeditor/'
 
-from .local_settings import *
-from .product_settings import *
+
+from .settings_local import *
+
+# settings for live env
+try:
+    from .settings_live import *
+except ImportError, e:
+    print "Warning: unable import settings_live.py"
+
+# settings for development env
+try:
+    from .settings_dev import *
+except ImportError, e:
+    print "Warning: unable import settings_dev.py"
+
