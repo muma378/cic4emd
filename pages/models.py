@@ -54,7 +54,7 @@ class Publishment(models.Model):
 	publisher 	= models.ForeignKey(User, verbose_name=u'发布人', on_delete=models.SET_NULL, null=True)
 	category 	= models.ForeignKey(Category, verbose_name=u'所属栏目', on_delete=models.SET_NULL, null=True)
 	state 		= models.CharField(u'发布状态', max_length=15, choices=PUBLISH_STATE, default='unpublished')
-	pub_date 	= models.DateTimeField(u'发布日期', validators=[validate_not_past], default=timezone.now)
+	pub_date 	= models.DateTimeField(u'发布日期', validators=[], default=timezone.now)
 	create_date = models.DateField(u'创建日期', auto_now_add=True)
 	broadcast	= models.BooleanField(u'显示在中心动态中', default=True)
 	
