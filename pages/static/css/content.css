@@ -61,3 +61,17 @@
 	font-size: 14px;
 	font-family: STSong, SimSun, 宋体, NSimSun, sans-serif;
 }
+
+.callboard-footer > span {
+	padding-left: 35px;
+	padding-right: 35px;
+	font-size: 13px;
+}
+
+.callboard-footer > span > a {
+	color: #595757;
+}
+
+.callboard-footer > .post-next {
+	float: right;
+}

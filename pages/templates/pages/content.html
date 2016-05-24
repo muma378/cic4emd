@@ -45,6 +45,6 @@
 {% endblock %}
 
 {% block callboard-footer %}
-	<span class="post-prev">上一篇</span>
-	<span class="post-next">下一篇</span>
+	<span class="post-prev"><a href="{{ related.prev.get_url }}">上一篇</a></span>
+	<span class="post-next"><a href="{{ related.next.get_url }}">下一篇</a></span>
 {% endblock %}

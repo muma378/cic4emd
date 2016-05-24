@@ -16,7 +16,7 @@ def index(request):
     # query once, but used in many times
     pub_queryset = get_avaible_publishments()
     
-    news_list = pub_queryset.order_by("-pub_date")[:settings.NEWS_LISTED_INDEX]
+    news_list = pub_queryset[:settings.NEWS_LISTED_INDEX]
     
     news_archives_categories = []
     for abbr in settings.NEWS_ARCHIVE_ABBRS:
@@ -68,12 +68,12 @@ def get_categories():
 
 def get_avaible_publishments():
     return Publishment.objects.exclude(state='unpublished')\
-        .exclude(broadcast=False).filter(pub_date__lte=tz_now())
+        .exclude(broadcast=False).filter(pub_date__lte=tz_now()).order_by("-pub_date")
 
 
 def category_archive(request, category_abbr):
     category = get_object_or_404(Category, abbr=category_abbr)
-    pub_queryset = get_avaible_publishments().order_by("-pub_date")
+    pub_queryset = get_avaible_publishments()
 
     if category.parent:     # for categories in top level
         publishments = pub_queryset.filter(category=category)
@@ -130,10 +130,18 @@ def publishment(request, category_abbr, publishment_id):
     if content.category.abbr != category_abbr:
         raise Http404
 
+    topics = get_avaible_publishments().filter(category__abbr=category_abbr)
+    topics_id_list = [ topic.id for topic in topics ]
+    topic_index = topics_id_list.index(content.id)
+    prev = topics[topic_index-1] if topic_index > 0 else content
+    next = topics[topic_index+1] if topic_index < len(topics)-1 else content
+    related = {"prev": prev, "next": next}
+
     attachments = Attachment.objects.filter(article=content.article)
     context = {"publishment": content, 
                 "title": content.article, 
                 "attachments": attachments,
+                "related": related,
                 "navigation": get_categories()
                 }
     return render(request, "pages/content.html", context)

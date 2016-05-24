@@ -40,8 +40,7 @@
 .cic-pagination {
 	display: inline-block;
 	width: 100%;
-	padding-left: 26px;
-	padding-right: 36px; 
+	padding-right: 10px;
 	font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,sans-serif;
 	font-size: 13px;
 }

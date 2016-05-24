@@ -70,6 +70,8 @@
 .callboard-footer {
 	height: 70px;
 	padding-bottom: 50px;
+	padding-left: 26px;
+	padding-right: 26px; 
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 	background-color: #ffffff;
