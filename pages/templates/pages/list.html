@@ -5,6 +5,9 @@
 <link href="{% static "css/list.css" %}" rel="stylesheet">
 {% endblock %}
 
+
+{% block callboard-title %}{{ category.name }}{% endblock %}
+
 {% block callboard-tabs %}
 	{% for subcategory in subcategories %}
 		<a href="{{ subcategory.get_url }}">

@@ -1,0 +1,63 @@
+.cic-post {
+
+}
+
+
+.post-title {
+	margin-bottom: 35px;
+	text-align: center;
+	font-size: 22px;
+	font-family: NSimSun, STSong, SimSun, 宋体, sans-serif;
+	color: #423f42;
+}
+
+
+.post-meta {
+	text-align: center;
+	font-size: 12px;
+	font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,sans-serif;
+	color: #727171;
+}
+
+.post-meta > span {
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+
+.post-body {
+	width: 92%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 60px;
+	padding-bottom: 20px;
+	font-size: 14px;
+	font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,sans-serif;
+	line-height: 200%
+
+}
+
+.cic-post > .post-body img {
+  width: 98%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.cic-post > .post-attachment {
+	width: 92%;
+	margin-top: 30px;
+	margin-bottom: 40px;
+	padding-left: 35px;
+	padding-right: 35px;
+}
+
+.post-attachment > .attachment-meta {
+	font-size: 14px;
+	font-family: STSong, SimSun, 宋体, NSimSun, sans-serif;
+}
+
+.post-attachment > ol > li {
+	font-size: 14px;
+	font-family: STSong, SimSun, 宋体, NSimSun, sans-serif;
+}

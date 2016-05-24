@@ -8,7 +8,7 @@
 {% block main %}
 	<div class="cic-callboard">
 		<div class="callboard-head">
-			<span class="callboard-head-title">{{ category.name }}</span>
+			<span class="callboard-head-title">{% block callboard-title %}{% endblock %}</span>
 			<div class="callboard-tabs">
 				{% block callboard-tabs %}
 				{% endblock %}

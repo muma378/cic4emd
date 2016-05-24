@@ -1,39 +1,50 @@
-{% extends "pages/base_site.html" %}
+{% extends "pages/callboard.html" %}
 {% load staticfiles %}
 
 {% block extrastyle %}{{ block.super }}
-<link href="{% static "css/blog.css" %}" rel="stylesheet">
+<link href="{% static "css/content.css" %}" rel="stylesheet">
 {% endblock %}
 
-{% block breadcrumb %}{% endblock %}
+{% block callboard-title %}{{ publishment.category }}{% endblock %}
 
-{% block main %}
-<div class="container publishment-container" id="publishment-{{ publishment.id }}">
-{% block content %}
-	<div class="row">
-		<div class="blog-post">
-			<h2 class="blog-post-title">{{ publishment.article.title }}</h2>
-			<p class="blog-post-meta">发布日期：{{ publishment.pub_date | date:"Y/m/d" }}&emsp;  发布人：{% if publishment.publisher %} {{ publishment.publisher.username }} {% else %}佚名 {% endif %} </p>
-			<div class="blog-post-body">
-				{% autoescape off %}
-					{{ publishment.article.content }}
-				{% endautoescape %}
+{% block callboard-tabs %}
+	{% for subcategory in subcategories %}
+		<a href="{{ subcategory.get_url }}">
+			<span id="callboard-tab-{{ subcategory.abbr }}" class="callboard-tab {% if subcategory == category %} active {% endif %}">{{ subcategory.name }}</span>
+		</a>
+	{% endfor %}
+{% endblock %}
+
+{% block callboard-body %}
+	<div class="cic-post">
+		<div class="post-title">{{ publishment.article.title }}</div>
+		<div class="post-meta">
+			<span id="post-meta-date">发布日期：{{ publishment.pub_date | date:"Y/m/d" }}</span>
+			<span id="post-meta-author">发布人：{% if publishment.publisher %} {{ publishment.publisher.username }} {% else %}佚名 {% endif %}</span>
+		</div>
+
+		<div class="post-body">
+			{% autoescape off %}
+				{{ publishment.article.content }}
+			{% endautoescape %}
+		</div>
+
+		{% block attachment %}
+			{% if attachments %}
+			<div class="post-attachment">
+				<p class="atachment-meta">附件下载：</p>
+				<ol>
+				{% for attachment in attachments %}
+					<li><a id="post-attachment-{{ forloop.counter }}" href="{{ attachment.file.url }}">{{ attachment.desc }} </a> - {{ attachment.date_uploaded | date:"Y/m/d"}}</li>
+				{% endfor %}
+			</ol>
 			</div>
-		<div>
+			{% endif %}
+		{% endblock %}
 	</div>
 {% endblock %}
-{% block attachment %}
-	{% if attachments %}
-	<div class="blog-attachment">
-		<p class="blog-post-meta">下载附件：</p>
-		{% for attachment in attachments %}
-			<a href="{{ attachment.file.url }}">{{ forloop.counter }}.{{ attachment.desc }} </a> - {{ attachment.date_uploaded | date:"Y/m/d"}}
-			<br>
-		{% endfor %}
-	</div>
-	{% endif %}
-{% endblock %}
-</div>
 
-
+{% block callboard-footer %}
+	<span class="post-prev">上一篇</span>
+	<span class="post-next">下一篇</span>
 {% endblock %}
