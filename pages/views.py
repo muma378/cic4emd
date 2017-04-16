@@ -14,7 +14,7 @@ def index(request):
     carousels = Carousel.objects.all().order_by("-date_uploaded")[:settings.CAROUSEL_IMAGES_NUM]
     
     # query once, but used in many times
-    pub_queryset = get_avaible_publishments()
+    pub_queryset = get_broadcast_publishments()
     
     news_list = pub_queryset[:settings.NEWS_LISTED_INDEX]
     
@@ -66,10 +66,13 @@ def get_categories():
         categories.append({"parent":parent, "children": children})
     return categories
 
-def get_avaible_publishments():
+def get_broadcast_publishments():
     return Publishment.objects.exclude(state='unpublished')\
         .exclude(broadcast=False).filter(pub_date__lte=tz_now()).order_by("-pub_date")
 
+def get_avaible_publishments():
+    return Publishment.objects.exclude(state='unpublished')\
+        .filter(pub_date__lte=tz_now()).order_by("-pub_date")
 
 def category_archive(request, category_abbr):
     category = get_object_or_404(Category, abbr=category_abbr)

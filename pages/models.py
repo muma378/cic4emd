@@ -96,7 +96,7 @@ class Attachment(MediaFile):
 	file = models.FileField(upload_to=user_uploads_path, verbose_name=u'文件')
 	
 	def __unicode__(self):
-		return str(self.id) + '.' + self.desc
+		return unicode(self.id) + '.' + self.desc
 	
 	class Meta:
 		verbose_name = u'添加附件'

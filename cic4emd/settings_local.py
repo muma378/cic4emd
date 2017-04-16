@@ -80,5 +80,5 @@ MORE_LINKS = [
 ]
 
 
-NEWS_ARCHIVE_ABBRS = ['tzgg',  'zxcg', 'xwzx', 'xwgg',] 
+NEWS_ARCHIVE_ABBRS = ['xwzx', 'xsjz', 'stake1', 'stake2'] 
 PLACEHOLDER_COVER = 'asset/img/placeholder.png'
